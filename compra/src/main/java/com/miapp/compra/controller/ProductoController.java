@@ -18,7 +18,6 @@ import com.miapp.compra.repository.ProductoRepository;
 public class ProductoController {
     @Autowired
     private ProductoRepository productoRepository;
-    @Autowired
     private CategoriaRepository categoriaRepository;
 
     @GetMapping
@@ -31,7 +30,7 @@ public class ProductoController {
     public String nuevo(Model model) {
         model.addAttribute("producto", new Producto());
         model.addAttribute("categorias", categoriaRepository.findAll());
-        return "products/form";
+        return "products/new";
     }
 
     @PostMapping
@@ -44,7 +43,7 @@ public class ProductoController {
     public String ediitar(@PathVariable Long id, Model model) {
         model.addAttribute("producto", productoRepository.findById(id).orElse(null));
         model.addAttribute("categorias", categoriaRepository.findAll());
-        return "products/form";
+        return "products/edit";
     }
 
     @GetMapping("/remove/{id}")

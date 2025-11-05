@@ -13,7 +13,7 @@ import com.miapp.compra.model.Categoria;
 import com.miapp.compra.repository.CategoriaRepository;
 
 @Controller
-@RequestMapping("/categorias")
+@RequestMapping("/categories")
 public class CategoriaController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class CategoriaController {
     @GetMapping("/new")
     public String nuevo(Model model) {
         model.addAttribute("categoria", new Categoria());
-        return new String();
+        return "categories/new";
     }
 
     @PostMapping
@@ -40,7 +40,7 @@ public class CategoriaController {
     @GetMapping("/edit/{id}")
     public String editar(@PathVariable Long id, Model model) {
         model.addAttribute("categoria", categoriaRepository.findById(id).orElse(null));
-        return "categories/form";
+        return "categories/edit";
     }
 
     @GetMapping("/remove/{id}")
